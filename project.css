@@ -134,7 +134,7 @@
 /* ── IMAGES ──────────────────────────────────────── */
 
 .proj-img-full {
-  width: 100%;
+  padding: 0 12px 12px;
   display: block;
   line-height: 0;
 }
@@ -143,12 +143,14 @@
   width: 100%;
   display: block;
   height: auto;
+  border-radius: 8px;
 }
 
 .proj-img-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  gap: 12px;
+  padding: 0 12px 12px;
   line-height: 0;
 }
 
@@ -156,18 +158,21 @@
   width: 100%;
   display: block;
   height: auto;
+  border-radius: 8px;
 }
 
 .proj-img-3col {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px;
+  gap: 12px;
+  padding: 0 12px 12px;
   line-height: 0;
 }
 
 .proj-img-3col img {
   width: 100%;
   display: block;
+  border-radius: 8px;
   height: auto;
 }
 
@@ -331,6 +336,24 @@
   display: block;
   font-size: 0.88rem;
   font-weight: 400;
+}
+
+/* ── AWARD CALLOUT ───────────────────────────────── */
+
+.proj-award {
+  padding: 0 32px 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.proj-award img {
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .proj-award { padding: 0 20px 48px; }
 }
 
 /* ── NEXT PROJECT ────────────────────────────────── */
