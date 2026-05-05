@@ -71,17 +71,53 @@
   });
 
 
-  /* ── 4. SKETCHBOOK TABS ─────────────────────────── */
+  /* ── 4. ARTIFACTS GRID ──────────────────────────── */
 
-  const sketchbookTabs = document.querySelectorAll('.sketchbook-tab');
-  sketchbookTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      sketchbookTabs.forEach(t => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-      const target = tab.dataset.tab;
-      document.getElementById('sketchbook-3d').style.display = target === '3d' ? '' : 'none';
-      document.getElementById('sketchbook-posters').style.display = target === 'posters' ? '' : 'none';
+  const artifactsGrid = document.getElementById('artifacts-grid');
+  if (artifactsGrid) {
+    // Randomise order on each load
+    const items = [...artifactsGrid.children];
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      artifactsGrid.appendChild(items[j]);
+      items.splice(j, 1);
+    }
+
+    // Modal
+    const modal    = document.getElementById('artifacts-modal');
+    const modalImg = document.getElementById('artifacts-modal-img');
+    const modalLbl = document.getElementById('artifacts-modal-title');
+    const backdrop = modal.querySelector('.artifacts-modal-backdrop');
+    const closeBtn = modal.querySelector('.artifacts-modal-close');
+
+    function openModal(src, title) {
+      modalImg.src = src;
+      modalImg.alt = title;
+      modalLbl.textContent = title;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => { modalImg.src = ''; }, 250);
+    }
+
+    artifactsGrid.addEventListener('click', e => {
+      const item = e.target.closest('.artifact-item');
+      if (!item) return;
+      const img = item.querySelector('img');
+      openModal(img.src, item.dataset.title || img.alt);
     });
-  });
+
+    backdrop.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+  }
 
 })();
