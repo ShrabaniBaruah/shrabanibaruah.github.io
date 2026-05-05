@@ -85,18 +85,24 @@
       [rawData[i], rawData[j]] = [rawData[j], rawData[i]];
     }
 
+    // Responsive layout constants
+    const vpW = afViewport.offsetWidth;
+    let COLS, IMG_W, GAP_X, GAP_Y, PAD;
+    if (vpW < 600) {
+      COLS = 3; IMG_W = 110; GAP_X = 20; GAP_Y = 20; PAD = 30;
+    } else if (vpW < 1024) {
+      COLS = 5; IMG_W = 140; GAP_X = 50; GAP_Y = 50; PAD = 50;
+    } else {
+      COLS = 8; IMG_W = 170; GAP_X = 80; GAP_Y = 80; PAD = 80;
+    }
+
     // Pad to a full multiple of COLS so no row is incomplete
-    const COLS   = 8;
     const remainder = rawData.length % COLS;
     if (remainder !== 0) {
       const needed = COLS - remainder;
       for (let i = 0; i < needed; i++) rawData.push(rawData[i]);
     }
     const ROWS   = rawData.length / COLS;
-    const IMG_W  = 170;
-    const GAP_X  = 80;
-    const GAP_Y  = 80;
-    const PAD    = 80;
     const TILE_W = PAD + COLS * (IMG_W + GAP_X);
     const TILE_H = PAD + ROWS * (IMG_W + GAP_Y);
 
