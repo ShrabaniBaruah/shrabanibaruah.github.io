@@ -259,13 +259,13 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .artifacts-grid {
   columns: 8;
-  column-gap: 3px;
-  padding: 3px;
+  column-gap: 56px;
+  padding: 80px 60px;
 }
 
 .artifact-item {
   break-inside: avoid;
-  margin-bottom: 3px;
+  margin-bottom: 56px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
