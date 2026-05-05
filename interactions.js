@@ -61,4 +61,18 @@
     });
   });
 
+
+  /* ── 3. SKETCHBOOK TABS ─────────────────────────── */
+
+  const sketchbookTabs = document.querySelectorAll('.sketchbook-tab');
+  sketchbookTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      sketchbookTabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      const target = tab.dataset.tab;
+      document.getElementById('sketchbook-3d').style.display = target === '3d' ? '' : 'none';
+      document.getElementById('sketchbook-posters').style.display = target === 'posters' ? '' : 'none';
+    });
+  });
+
 })();
