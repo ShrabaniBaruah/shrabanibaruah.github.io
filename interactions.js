@@ -85,9 +85,14 @@
       [rawData[i], rawData[j]] = [rawData[j], rawData[i]];
     }
 
-    // Layout constants — clean grid
+    // Pad to a full multiple of COLS so no row is incomplete
     const COLS   = 8;
-    const ROWS   = Math.ceil(rawData.length / COLS);
+    const remainder = rawData.length % COLS;
+    if (remainder !== 0) {
+      const needed = COLS - remainder;
+      for (let i = 0; i < needed; i++) rawData.push(rawData[i]);
+    }
+    const ROWS   = rawData.length / COLS;
     const IMG_W  = 170;
     const GAP_X  = 80;
     const GAP_Y  = 80;
