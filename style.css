@@ -49,8 +49,8 @@
   --bg: #fafaf8;
   --white: #ffffff;
   --serif: 'DM Serif Display', 'Times New Roman', Times, serif;
-  --sans: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --narrow: 'Arial Narrow', Arial, sans-serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+  --narrow: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
   --c1: #e8e4dc;
