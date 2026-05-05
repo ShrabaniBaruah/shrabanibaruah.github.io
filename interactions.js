@@ -89,9 +89,9 @@
     const vpW = afViewport.offsetWidth;
     let COLS, IMG_W, GAP_X, GAP_Y, PAD;
     if (vpW < 600) {
-      COLS = 3; IMG_W = 110; GAP_X = 20; GAP_Y = 20; PAD = 30;
+      COLS = 3; IMG_W = 100; GAP_X = 16; GAP_Y = 40; PAD = 16;
     } else if (vpW < 1024) {
-      COLS = 5; IMG_W = 140; GAP_X = 50; GAP_Y = 50; PAD = 50;
+      COLS = 5; IMG_W = 140; GAP_X = 50; GAP_Y = 60; PAD = 50;
     } else {
       COLS = 8; IMG_W = 170; GAP_X = 80; GAP_Y = 80; PAD = 80;
     }
