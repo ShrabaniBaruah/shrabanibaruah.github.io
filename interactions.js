@@ -71,50 +71,161 @@
   });
 
 
-  /* ── 4. ARTIFACTS GRID ──────────────────────────── */
+  /* ── 4. ARTIFACTS INFINITE CANVAS ──────────────────── */
 
-  const artifactsGrid = document.getElementById('artifacts-grid');
-  if (artifactsGrid) {
-    // Randomise order on each load
-    const items = [...artifactsGrid.children];
-    for (let i = items.length - 1; i > 0; i--) {
+  const afViewport = document.getElementById('af-viewport');
+  const afDataEl   = document.getElementById('artifacts-data');
+
+  if (afViewport && afDataEl) {
+    const rawData = JSON.parse(afDataEl.textContent);
+
+    // Shuffle
+    for (let i = rawData.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      artifactsGrid.appendChild(items[j]);
-      items.splice(j, 1);
+      [rawData[i], rawData[j]] = [rawData[j], rawData[i]];
     }
+
+    // Layout constants
+    const COLS   = 9;
+    const ROWS   = Math.ceil(rawData.length / COLS) + 1;
+    const TILE_W = 4200;
+    const TILE_H = ROWS * 340;
+    const CELL_W = TILE_W / COLS;
+    const CELL_H = TILE_H / ROWS;
+    const SIZES  = [110, 130, 150, 170, 190];
+
+    const layouts = rawData.map((d, i) => {
+      const col = i % COLS;
+      const row = Math.floor(i / COLS);
+      const w   = SIZES[Math.floor(Math.random() * SIZES.length)];
+      return {
+        src: d.src, title: d.title, w,
+        x: col * CELL_W + 10 + Math.random() * Math.max(0, CELL_W - w - 10),
+        y: row * CELL_H + 10 + Math.random() * Math.max(0, CELL_H - w * 1.3 - 10)
+      };
+    });
+
+    // Build 3x3 tiled stage
+    const stage = document.createElement('div');
+    stage.className = 'af-stage';
+    stage.style.width  = TILE_W * 3 + 'px';
+    stage.style.height = TILE_H * 3 + 'px';
+
+    for (let tr = 0; tr < 3; tr++) {
+      for (let tc = 0; tc < 3; tc++) {
+        layouts.forEach(item => {
+          const el = document.createElement('div');
+          el.className     = 'artifact-item';
+          el.dataset.title = item.title;
+          el.style.cssText = `left:${tc*TILE_W+item.x}px;top:${tr*TILE_H+item.y}px;width:${item.w}px`;
+          const img = document.createElement('img');
+          img.src = item.src; img.alt = item.title; img.loading = 'lazy';
+          el.appendChild(img);
+          stage.appendChild(el);
+        });
+      }
+    }
+    afViewport.appendChild(stage);
+
+    // Pan state — start centered on middle tile
+    const vw = afViewport.offsetWidth;
+    const vh = afViewport.offsetHeight;
+    let tx = -(TILE_W * 1.5 - vw / 2);
+    let ty = -(TILE_H * 1.5 - vh / 2);
+
+    function setTransform() {
+      stage.style.transform = `translate(${tx}px,${ty}px)`;
+    }
+
+    function wrap() {
+      const cx = -tx + vw / 2, cy = -ty + vh / 2;
+      if (cx < TILE_W)        tx -= TILE_W;
+      else if (cx >= TILE_W*2) tx += TILE_W;
+      if (cy < TILE_H)        ty -= TILE_H;
+      else if (cy >= TILE_H*2) ty += TILE_H;
+    }
+
+    setTransform();
+
+    // Drag
+    let dragging = false, didDrag = false, ox, oy, ptx, pty;
+
+    afViewport.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      dragging = true; didDrag = false;
+      ox = e.clientX; oy = e.clientY; ptx = tx; pty = ty;
+      afViewport.classList.add('is-dragging');
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - ox, dy = e.clientY - oy;
+      if (Math.abs(dx) + Math.abs(dy) > 4) didDrag = true;
+      tx = ptx + dx; ty = pty + dy;
+      wrap(); setTransform();
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      afViewport.classList.remove('is-dragging');
+    });
+
+    // Touch
+    afViewport.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      dragging = true; didDrag = false;
+      ox = t.clientX; oy = t.clientY; ptx = tx; pty = ty;
+      e.preventDefault();
+    }, { passive: false });
+
+    afViewport.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      const t = e.touches[0];
+      const dx = t.clientX - ox, dy = t.clientY - oy;
+      if (Math.abs(dx) + Math.abs(dy) > 4) didDrag = true;
+      tx = ptx + dx; ty = pty + dy;
+      wrap(); setTransform();
+      e.preventDefault();
+    }, { passive: false });
+
+    afViewport.addEventListener('touchend', () => { dragging = false; });
+
+    // Trackpad / wheel pan
+    afViewport.addEventListener('wheel', e => {
+      tx -= e.deltaX; ty -= e.deltaY;
+      wrap(); setTransform();
+      e.preventDefault();
+    }, { passive: false });
 
     // Modal
     const modal    = document.getElementById('artifacts-modal');
     const modalImg = document.getElementById('artifacts-modal-img');
     const modalLbl = document.getElementById('artifacts-modal-title');
-    const backdrop = modal.querySelector('.artifacts-modal-backdrop');
-    const closeBtn = modal.querySelector('.artifacts-modal-close');
 
     function openModal(src, title) {
-      modalImg.src = src;
-      modalImg.alt = title;
+      modalImg.src = src; modalImg.alt = title;
       modalLbl.textContent = title;
       modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
       modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      setTimeout(() => { modalImg.src = ''; }, 250);
+      setTimeout(() => { modalImg.src = ''; }, 240);
     }
 
-    artifactsGrid.addEventListener('click', e => {
+    afViewport.addEventListener('click', e => {
+      if (didDrag) return;
       const item = e.target.closest('.artifact-item');
       if (!item) return;
-      const img = item.querySelector('img');
-      openModal(img.src, item.dataset.title || img.alt);
+      openModal(item.querySelector('img').src, item.dataset.title);
     });
 
-    backdrop.addEventListener('click', closeModal);
-    closeBtn.addEventListener('click', closeModal);
+    modal.querySelector('.artifacts-modal-backdrop').addEventListener('click', closeModal);
+    modal.querySelector('.artifacts-modal-close').addEventListener('click', closeModal);
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
