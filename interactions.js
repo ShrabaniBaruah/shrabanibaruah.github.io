@@ -85,25 +85,21 @@
       [rawData[i], rawData[j]] = [rawData[j], rawData[i]];
     }
 
-    // Layout constants
-    const COLS   = 9;
-    const ROWS   = Math.ceil(rawData.length / COLS) + 1;
-    const TILE_W = 4200;
-    const TILE_H = ROWS * 340;
-    const CELL_W = TILE_W / COLS;
-    const CELL_H = TILE_H / ROWS;
-    const SIZES  = [110, 130, 150, 170, 190];
+    // Layout constants — clean grid
+    const COLS   = 8;
+    const ROWS   = Math.ceil(rawData.length / COLS);
+    const IMG_W  = 170;
+    const GAP_X  = 80;
+    const GAP_Y  = 80;
+    const PAD    = 80;
+    const TILE_W = PAD + COLS * (IMG_W + GAP_X);
+    const TILE_H = PAD + ROWS * (IMG_W + GAP_Y);
 
-    const layouts = rawData.map((d, i) => {
-      const col = i % COLS;
-      const row = Math.floor(i / COLS);
-      const w   = SIZES[Math.floor(Math.random() * SIZES.length)];
-      return {
-        src: d.src, title: d.title, w,
-        x: col * CELL_W + 10 + Math.random() * Math.max(0, CELL_W - w - 10),
-        y: row * CELL_H + 10 + Math.random() * Math.max(0, CELL_H - w * 1.3 - 10)
-      };
-    });
+    const layouts = rawData.map((d, i) => ({
+      src: d.src, title: d.title, w: IMG_W,
+      x: PAD / 2 + (i % COLS) * (IMG_W + GAP_X),
+      y: PAD / 2 + Math.floor(i / COLS) * (IMG_W + GAP_Y)
+    }));
 
     // Build 3x3 tiled stage
     const stage = document.createElement('div');
