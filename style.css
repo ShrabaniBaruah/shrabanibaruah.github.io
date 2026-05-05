@@ -337,7 +337,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .about-body p {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.15rem;
   line-height: 1.7;
   color: var(--black);
