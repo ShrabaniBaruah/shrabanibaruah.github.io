@@ -62,7 +62,16 @@
   });
 
 
-  /* ── 3. SKETCHBOOK TABS ─────────────────────────── */
+  /* ── 3. THOUGHT ACCORDION ──────────────────────── */
+
+  document.querySelectorAll('.proj-thought-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      trigger.closest('.proj-thought-item').classList.toggle('is-open');
+    });
+  });
+
+
+  /* ── 4. SKETCHBOOK TABS ─────────────────────────── */
 
   const sketchbookTabs = document.querySelectorAll('.sketchbook-tab');
   sketchbookTabs.forEach(tab => {

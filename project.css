@@ -300,6 +300,73 @@
 }
 .proj-link:hover { opacity: 0.45; }
 
+/* ── THOUGHT ACCORDION ───────────────────────────── */
+
+.proj-thought {
+  padding: 0 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.proj-thought-item {
+  border-top: 1px solid var(--rule);
+}
+
+.proj-thought-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.proj-thought-trigger:hover { color: var(--black); }
+
+.proj-thought-item.is-open .proj-thought-trigger { color: var(--black); }
+
+.proj-thought-bullet {
+  font-size: 0.45rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.proj-thought-item.is-open .proj-thought-bullet { opacity: 1; }
+
+.proj-thought-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.proj-thought-item.is-open .proj-thought-body { max-height: 800px; }
+
+.proj-thought-body p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--mid);
+  padding-bottom: 28px;
+  max-width: 560px;
+  font-family: var(--sans);
+}
+
+@media (max-width: 860px) {
+  .proj-thought { padding: 0 24px; }
+}
+
+@media (max-width: 600px) {
+  .proj-thought { padding: 0 20px; }
+}
+
 /* ── CREDITS ─────────────────────────────────────── */
 
 .proj-credits {
