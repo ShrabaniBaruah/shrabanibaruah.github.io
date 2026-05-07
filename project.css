@@ -168,6 +168,51 @@
   font-weight: 400;
 }
 
+/* ── CREDITS / CONTEXT (experiment pages) ───────── */
+
+.proj-credits {
+  margin-top: auto;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+.proj-credits-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+  font-family: var(--sans);
+}
+
+.proj-credits-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proj-credit-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.proj-credit-role {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+  font-family: var(--sans);
+}
+
+.proj-credit-name {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 400;
+  font-family: var(--sans);
+}
+
 /* ── THOUGHT ACCORDION ───────────────────────────── */
 
 .proj-thought {
