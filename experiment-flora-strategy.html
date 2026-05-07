@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Brand Strategy — Shrabani Baruah</title>
+  <meta name="description" content="Using Flora AI to build brand strategy from the ground up." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="project.css" />
+  <link rel="stylesheet" href="experiments.css" />
+</head>
+<body>
+
+  <header class="proj-header">
+    <a href="experiments.html" class="proj-back">← Experiments</a>
+    <a href="index.html" class="proj-studio">Shrabani Baruah</a>
+  </header>
+
+  <div class="blog-header">
+    <span class="blog-tag-pill">AI — Strategy</span>
+    <h1 class="blog-title-display">AI Brand Strategy</h1>
+    <div class="blog-meta-row">
+      <span>2025</span>
+      <span>Flora AI</span>
+      <span>Personal Experiment</span>
+    </div>
+  </div>
+
+  <div class="blog-hero-img">
+    <img src="images/flora-01.jpg" alt="AI Brand Strategy" />
+  </div>
+
+  <p class="blog-lead">Strategy is the part of brand work that's hardest to shortcut — until now. This experiment tested how far AI could go in building a brand strategy from first principles.</p>
+
+  <div class="proj-rule"></div>
+
+  <div class="proj-img-full" style="padding: 0 0 10px;">
+    <img src="images/flora-02.jpg" alt="AI Brand Strategy" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;width:100%;height:auto;display:block;" />
+  </div>
+  <div class="proj-img-full" style="padding: 0 0 10px;">
+    <img src="images/flora-03.jpg" alt="AI Brand Strategy" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;width:100%;height:auto;display:block;" />
+  </div>
+  <div class="proj-img-full" style="padding: 0 0 10px;">
+    <img src="images/flora-04.jpg" alt="AI Brand Strategy" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;width:100%;height:auto;display:block;" />
+  </div>
+  <div class="proj-img-full" style="padding: 0 0 10px;">
+    <img src="images/flora-05.jpg" alt="AI Brand Strategy" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;width:100%;height:auto;display:block;" />
+  </div>
+
+  <div class="proj-credits">
+    <div class="proj-credits-label">Context</div>
+    <div class="proj-credits-grid">
+      <div class="proj-credit-item">
+        <span class="proj-credit-role">Tool</span>
+        <span class="proj-credit-name">Flora AI</span>
+      </div>
+      <div class="proj-credit-item">
+        <span class="proj-credit-role">Type</span>
+        <span class="proj-credit-name">Personal Experiment</span>
+      </div>
+      <div class="proj-credit-item">
+        <span class="proj-credit-role">Year</span>
+        <span class="proj-credit-name">2025</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="experiment-brief-to-billboard.html" class="proj-next">
+    <span class="proj-next-label">Next Experiment</span>
+    <span class="proj-next-title">Brief to Billboard in 48 Hours →</span>
+  </a>
+
+  <script src="interactions.js" defer></script>
+  <script>
+    if (window.parent !== window) {
+      document.addEventListener("DOMContentLoaded", function() {
+        var back = document.querySelector(".proj-back");
+        if (back) back.addEventListener("click", function(e) {
+          e.preventDefault(); e.stopImmediatePropagation();
+          window.parent.postMessage("exp:close", "*");
+        }, true);
+        var next = document.querySelector(".proj-next");
+        if (next) next.addEventListener("click", function(e) {
+          e.preventDefault(); e.stopImmediatePropagation();
+          window.parent.postMessage({ type: "exp:nav", url: next.getAttribute("href") }, "*");
+        }, true);
+      });
+    }
+  </script>
+</body>
+</html>
