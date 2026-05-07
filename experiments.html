@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiments — Shrabani Baruah</title>
+  <meta name="description" content="Explorations at the intersection of creative direction and artificial intelligence." /> 
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Shrabani Baruah</a>
+    <div class="nav-tabs">
+      <a href="index.html#work" class="nav-tab">Work</a>
+      <a href="experiments.html" class="nav-tab is-active">Experiments</a>
+      <a href="artifacts.html" class="nav-tab">Artifacts</a>
+      <a href="index.html#about" class="nav-tab">About</a>
+      <a href="mailto:work.shrabani@gmail.com" class="nav-tab">Contact</a>
+    </div>
+  </nav>
+
+  <!-- EXPERIMENTS GRID -->
+  <main class="ai-section" style="padding-top: 80px;">
+    <div class="section-header">
+      <h2 class="section-title">Experiments</h2>
+      <p class="section-desc">Explorations at the intersection of creative direction and artificial intelligence.</p>
+    </div>
+
+    <div class="ai-grid">
+
+      <article class="project-card" data-color="c3">
+        <a href="experiment-prompting.html" class="project-link" data-exp>
+          <div class="project-image">
+            <img src="images/ai-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="project-meta">
+            <span class="project-category">AI — Image Generation</span>
+            <h2 class="project-title">Prompting as Art Direction</h2>
+            <span class="project-year">2025</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="project-card" data-color="c7">
+        <a href="experiment-moodboards.html" class="project-link" data-exp>
+          <div class="project-image">
+            <img src="images/ai-02.jpg" alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="project-meta">
+            <span class="project-category">AI — Visual Concept</span>
+            <h2 class="project-title">Moodboards Without Mood Boards</h2>
+            <span class="project-year">2025</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="project-card" data-color="c2">
+        <a href="experiment-directors-double.html" class="project-link" data-exp>
+          <div class="project-image">
+            <img src="images/ai-03.jpg" alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="project-meta">
+            <span class="project-category">AI — Art Direction</span>
+            <h2 class="project-title">The Director's Double</h2>
+            <span class="project-year">2024</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="project-card" data-color="c5">
+        <a href="experiment-100-logos.html" class="project-link" data-exp>
+          <div class="project-image">
+            <img src="images/ai-04.jpg" alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="project-meta">
+            <span class="project-category">AI — Brand Exploration</span>
+            <h2 class="project-title">100 Logos in an Afternoon</h2>
+            <span class="project-year">2024</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="project-card" data-color="c4">
+        <a href="experiment-type-dreams.html" class="project-link" data-exp>
+          <div class="project-image">
+            <img src="images/ai-05.jpg" alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="project-meta">
+            <span class="project-category">AI — Typography</span>
+            <h2 class="project-title">When Type Learns to Dream</h2>
+            <span class="project-year">2024</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="project-card" data-color="c8">
+        <a href="experiment-brief-to-billboard.html" class="project-link" data-exp>
+          <div class="project-image">
+            <img src="images/ai-06.jpg" alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="project-meta">
+            <span class="project-category">AI — Campaign</span>
+            <h2 class="project-title">Brief to Billboard in 48 Hours</h2>
+            <span class="project-year">2024</span>
+          </div>
+        </a>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- EXPERIMENT PANEL SCRIPT -->
+  <script>
+    (function() {
+      var wrap, iframe, closeBtn, backdrop;
+
+      function init() {
+        wrap     = document.getElementById('expPanelWrap');
+        iframe   = document.getElementById('expPanelIframe');
+        closeBtn = document.getElementById('expPanelClose');
+        backdrop = document.getElementById('expPanelBackdrop');
+        if (!wrap) return;
+
+        function open(url) {
+          iframe.src = url;
+          wrap.classList.add('is-open');
+          document.body.classList.add('exp-open');
+        }
+
+        function close() {
+          wrap.classList.remove('is-open');
+          document.body.classList.remove('exp-open');
+          setTimeout(function() { iframe.src = ''; }, 420);
+        }
+
+        document.addEventListener('click', function(e) {
+          var link = e.target.closest('[data-exp]');
+          if (!link) return;
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          open(link.getAttribute('href'));
+        }, true);
+
+        closeBtn.addEventListener('click', close);
+        backdrop.addEventListener('click', close);
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && wrap.classList.contains('is-open')) close();
+        });
+
+        window.addEventListener('message', function(e) {
+          if (e.data === 'exp:close') close();
+          else if (e.data && e.data.type === 'exp:nav') iframe.src = e.data.url;
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
+  <!-- EXPERIMENT PANEL -->
+  <div class="exp-panel-wrap" id="expPanelWrap" aria-hidden="true">
+    <div class="exp-panel-backdrop" id="expPanelBackdrop"></div>
+    <div class="exp-panel" id="expPanel" role="dialog" aria-modal="true">
+      <div class="exp-panel-bar">
+        <span class="exp-panel-label">Experiment</span>
+        <button class="exp-panel-close" id="expPanelClose" aria-label="Close experiment">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <iframe class="exp-panel-iframe" id="expPanelIframe" src="" title="Experiment" allow="same-origin"></iframe>
+    </div>
+  </div>
+
+  <script src="interactions.js" defer></script>
+</body>
+</html>

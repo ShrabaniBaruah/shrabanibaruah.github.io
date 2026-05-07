@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompting as Art Direction — Shrabani Baruah</title>
+  <meta name="description" content="An experiment in treating AI prompts as creative briefs." /> 
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="project.css" />
+  <link rel="stylesheet" href="experiments.css" />
+</head>
+<body>
+
+  <header class="proj-header">
+    <a href="experiments.html" class="proj-back">← Experiments</a>
+    <a href="index.html" class="proj-studio">Shrabani Baruah</a>
+  </header>
+
+  <div class="blog-header">
+    <span class="blog-tag-pill">AI — Image Generation</span>
+    <h1 class="blog-title-display">Prompting as<br>Art Direction</h1>
+    <div class="blog-meta-row">
+      <span>2025</span>
+      <span>Midjourney, DALL·E, Adobe Firefly</span>
+      <span>Personal Experiment · 2 Weeks</span>
+    </div>
+  </div>
+
+  <div class="blog-hero-img">
+    <img src="images/ai-01.jpg" alt="Prompting as Art Direction" />
+  </div>
+
+  <p class="blog-lead">A good brief doesn't describe what something looks like — it describes what it feels like. The same is true for a prompt.</p>
+
+  <div class="proj-rule"></div>
+
+  <!-- DIAGRAM: 6 PROMPT STRATEGIES -->
+  <div class="exp-diagram">
+    <div class="exp-diagram-header">
+      <span class="exp-diagram-title">6 Prompt Strategies — Ranked by Creative Output</span>
+      <span class="exp-diagram-tag">Tested over 2 weeks</span>
+    </div>
+    <div class="exp-strategy-grid">
+
+      <div class="exp-strategy-card">
+        <div class="exp-strategy-num">01</div>
+        <div class="exp-strategy-name">Literal</div>
+        <div class="exp-strategy-desc">Describe exactly what you want to see. Functions as a production spec.</div>
+        <div class="exp-strategy-eg">"Woman, 35, morning light, white bathroom, holding serum bottle"</div>
+        <div class="exp-rating">
+          <div class="exp-rating-dot on"></div><div class="exp-rating-dot"></div><div class="exp-rating-dot"></div><div class="exp-rating-dot"></div><div class="exp-rating-dot"></div>
+          <span class="exp-rating-label">Low originality</span>
+        </div>
+      </div>
+
+      <div class="exp-strategy-card">
+        <div class="exp-strategy-num">02</div>
+        <div class="exp-strategy-name">Emotional</div>
+        <div class="exp-strategy-desc">Describe the feeling, not the subject. Works best layered over other strategies.</div>
+        <div class="exp-strategy-eg">"Quiet confidence after a long flight. The stillness before something begins."</div>
+        <div class="exp-rating">
+          <div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot"></div><div class="exp-rating-dot"></div>
+          <span class="exp-rating-label">Medium</span>
+        </div>
+      </div>
+
+      <div class="exp-strategy-card">
+        <div class="exp-strategy-num">03</div>
+        <div class="exp-strategy-name">Reference-led</div>
+        <div class="exp-strategy-desc">Name aesthetics or eras to draw from. Grounds output but risks the derivative.</div>
+        <div class="exp-strategy-eg">"Aesop meets early Bottega Veneta. Clean, earned, unhurried."</div>
+        <div class="exp-rating">
+          <div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot"></div><div class="exp-rating-dot"></div><div class="exp-rating-dot"></div>
+          <span class="exp-rating-label">Low – medium</span>
+        </div>
+      </div>
+
+      <div class="exp-strategy-card">
+        <div class="exp-strategy-num">04</div>
+        <div class="exp-strategy-name">Anti-reference</div>
+        <div class="exp-strategy-desc">Define what it must not be. Forces the model into unclaimed territory.</div>
+        <div class="exp-strategy-eg">"Not minimal, not maximalist, not Aesop, not Glossier, not clinical."</div>
+        <div class="exp-rating">
+          <div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot"></div>
+          <span class="exp-rating-label">High</span>
+        </div>
+      </div>
+
+      <div class="exp-strategy-card">
+        <div class="exp-strategy-num">05</div>
+        <div class="exp-strategy-name">Metaphorical</div>
+        <div class="exp-strategy-desc">Use analogies from other disciplines to encode the brand's feeling.</div>
+        <div class="exp-strategy-eg">"If this brand were an architect, she'd be Zaha Hadid in her early years — ambition before recognition."</div>
+        <div class="exp-rating">
+          <div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div>
+          <span class="exp-rating-label">Highest</span>
+        </div>
+      </div>
+
+      <div class="exp-strategy-card">
+        <div class="exp-strategy-num">06</div>
+        <div class="exp-strategy-name">Directorial</div>
+        <div class="exp-strategy-desc">Write as if on set directing a photographer. Light, angle, moment.</div>
+        <div class="exp-strategy-eg">"Late afternoon. She's just finished, not about to start. Light tired but honest. Camera at chest height."</div>
+        <div class="exp-rating">
+          <div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div><div class="exp-rating-dot on"></div>
+          <span class="exp-rating-label">Highest</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="proj-thought">
+    <div class="proj-thought-item is-open">
+      <button class="proj-thought-trigger">The Six Strategies</button>
+      <div class="proj-thought-body">
+        <p><strong>Literal</strong> — Describe exactly what you want to see. Works as a spec sheet, rarely works as inspiration.</p>
+        <p><strong>Emotional</strong> — Describe how the image should feel, not what it should contain. "Quiet confidence after a long flight."</p>
+        <p><strong>Reference-led</strong> — Name aesthetics or eras you want to draw from. Grounds the output but risks the derivative.</p>
+        <p><strong>Anti-reference</strong> — Describe what it should not look like. "Not minimal, not maximalist, not Aesop, not Glossier." This forces the model into a gap that doesn't yet have a name.</p>
+        <p><strong>Metaphorical</strong> — Use analogies from other disciplines. "If this brand were an architect, she'd be Zaha Hadid in her early years — ambition before recognition."</p>
+        <p><strong>Directorial</strong> — Write as if directing a photographer on set. Light quality, camera angle, what the subject is about to do, what just happened.</p>
+      </div>
+    </div>
+    <div class="proj-thought-item">
+      <button class="proj-thought-trigger">What I Found</button>
+      <div class="proj-thought-body">
+        <p>The directorial and metaphorical approaches consistently produced the most unexpected and ownable results. Literal prompts gave me exactly what I asked for, which was rarely interesting.</p>
+        <p>The anti-reference strategy was the biggest surprise. Defining the negative space — what the brand refuses to be — created a genuinely unoccupied territory. The model had to fill a gap that existing references couldn't cover.</p>
+        <p>Emotional prompts worked best as a layer on top of another strategy, not on their own. "Quiet confidence" alone gives you beige. "Quiet confidence + directorial + anti-reference" gives you something you haven't seen before.</p>
+      </div>
+    </div>
+    <div class="proj-thought-item">
+      <button class="proj-thought-trigger">The Craft Question</button>
+      <div class="proj-thought-body">
+        <p>The most uncomfortable part of this experiment wasn't the outputs — it was recognising that the skill required to write an excellent prompt is almost identical to the skill required to write an excellent brief. And most briefs are not excellent.</p>
+        <p>A weak brief produces weak work whether the executor is a human or a model. What AI has done is make the quality of the brief visible immediately, with no human grace to smooth over the gaps.</p>
+      </div>
+    </div>
+    <div class="proj-thought-item">
+      <button class="proj-thought-trigger">What I'd Do Differently</button>
+      <div class="proj-thought-body">
+        <p>Build a personal prompt library organised by emotional register — not by subject matter, but by feeling. The best prompts function like a vocabulary of sensation. The better your vocabulary, the more precise your direction.</p>
+        <p>I'd also spend more time on the anti-reference strategy. Most brand territories are overcrowded. The most useful creative direction is often a description of the negative space no one has claimed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-credits">
+    <div class="proj-credits-label">Context</div>
+    <div class="proj-credits-grid">
+      <div class="proj-credit-item">
+        <span class="proj-credit-role">Type</span>
+        <span class="proj-credit-name">Personal Experiment</span>
+      </div>
+      <div class="proj-credit-item">
+        <span class="proj-credit-role">Duration</span>
+        <span class="proj-credit-name">2 Weeks</span>
+      </div>
+      <div class="proj-credit-item">
+        <span class="proj-credit-role">Year</span>
+        <span class="proj-credit-name">2025</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="experiment-moodboards.html" class="proj-next">
+    <span class="proj-next-label">Next Experiment</span>
+    <span class="proj-next-title">Moodboards Without Mood Boards <span class="proj-next-arrow">→</span></span>
+  </a>
+
+  <script src="interactions.js" defer></script>
+  <script>
+    // When loaded inside the experiment panel, intercept nav links
+    if (window.parent !== window) {
+      document.addEventListener("DOMContentLoaded", function() {
+        var back = document.querySelector(".proj-back");
+        if (back) back.addEventListener("click", function(e) {
+          e.preventDefault(); e.stopImmediatePropagation();
+          window.parent.postMessage("exp:close", "*");
+        }, true);
+        var next = document.querySelector(".proj-next");
+        if (next) next.addEventListener("click", function(e) {
+          e.preventDefault(); e.stopImmediatePropagation();
+          window.parent.postMessage({ type: "exp:nav", url: next.getAttribute("href") }, "*");
+        }, true);
+      });
+    }
+  </script>
+</body>
+</html>
