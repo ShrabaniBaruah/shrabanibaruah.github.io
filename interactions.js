@@ -53,7 +53,7 @@
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('mailto') ||
         href.startsWith('http') || link.target === '_blank') return;
-
+    if (link.hasAttribute('data-exp')) return; // panel handles these
     link.addEventListener('click', e => {
       e.preventDefault();
       overlay.classList.remove('is-leaving');
@@ -71,7 +71,21 @@
   });
 
 
-  /* ── 4. ARTIFACTS INFINITE CANVAS ──────────────────── */
+  /* ── 4. SIDEBAR TOGGLE ──────────────────────────── */
+
+  const sidebarClose = document.querySelector('.proj-sidebar-close');
+  const sidebarOpen  = document.querySelector('.proj-sidebar-open');
+  const projLayout   = document.querySelector('.proj-layout');
+
+  if (sidebarClose && projLayout) {
+    sidebarClose.addEventListener('click', () => projLayout.classList.add('sidebar-collapsed'));
+  }
+  if (sidebarOpen && projLayout) {
+    sidebarOpen.addEventListener('click', () => projLayout.classList.remove('sidebar-collapsed'));
+  }
+
+
+  /* ── 5. ARTIFACTS INFINITE CANVAS ──────────────────── */
 
   const afViewport = document.getElementById('af-viewport');
   const afDataEl   = document.getElementById('artifacts-data');
@@ -237,5 +251,6 @@
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
   }
+
 
 })();

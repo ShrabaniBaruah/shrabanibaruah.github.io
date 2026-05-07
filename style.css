@@ -48,7 +48,7 @@
   --rule: #d8d8d8;
   --bg: #fafaf8;
   --white: #ffffff;
-  --serif: 'DM Serif Display', 'Times New Roman', Times, serif;
+  --serif: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
   --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
   --narrow: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -646,4 +646,114 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .info-grid { grid-template-columns: 1fr; gap: 36px; }
 
   .site-footer { padding: 18px 5px; flex-direction: column; gap: 4px; }
+}
+
+
+/* ══════════════════════════════════════════════════
+   EXPERIMENT PANEL  (artifact-style slide-in)
+══════════════════════════════════════════════════ */
+
+.exp-panel-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+}
+
+.exp-panel-wrap.is-open {
+  pointer-events: all;
+}
+
+/* dim backdrop */
+.exp-panel-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+.exp-panel-wrap.is-open .exp-panel-backdrop {
+  opacity: 1;
+}
+
+/* the panel itself */
+.exp-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 62%;
+  min-width: 360px;
+  background: #f9f8f5;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -6px 0 48px rgba(0, 0, 0, 0.22);
+}
+
+.exp-panel-wrap.is-open .exp-panel {
+  transform: translateX(0);
+}
+
+/* thin top bar */
+.exp-panel-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  height: 44px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.exp-panel-label {
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.exp-panel-close {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #888;
+  transition: background 0.15s ease, color 0.15s ease;
+  padding: 0;
+}
+
+.exp-panel-close:hover {
+  background: rgba(0, 0, 0, 0.07);
+  color: #000;
+}
+
+/* iframe fills rest of panel */
+.exp-panel-iframe {
+  flex: 1;
+  border: none;
+  width: 100%;
+  background: #f9f8f5;
+  display: block;
+}
+
+/* body lock when panel open */
+body.exp-open {
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .exp-panel {
+    width: 100%;
+    min-width: 0;
+  }
 }
