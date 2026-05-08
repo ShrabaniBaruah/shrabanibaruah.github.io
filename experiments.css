@@ -594,14 +594,44 @@
   margin: 0;
 }
 
+/* ── BLOG PROCESS SECTIONS ───────────────────────── */
+
+.blog-section {
+  padding: 36px 32px 0;
+  max-width: 780px;
+}
+
+.blog-section-label {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--sans);
+  margin-bottom: 18px;
+}
+
+.blog-section-body {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--black);
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+
+.blog-section-body:last-child { margin-bottom: 0; }
+
 @media (max-width: 860px) {
   .blog-header { padding: 32px 24px 22px; }
   .blog-lead { padding: 28px 24px 0; }
+  .blog-section { padding: 28px 24px 0; }
 }
 
 @media (max-width: 600px) {
   .blog-header { padding: 24px 20px 18px; }
   .blog-lead { padding: 22px 20px 0; }
+  .blog-section { padding: 22px 20px 0; }
   .blog-title-display { font-size: clamp(2rem, 9vw, 3rem); }
 }
 
